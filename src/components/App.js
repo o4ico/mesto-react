@@ -16,9 +16,9 @@ const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
 const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
 const [isAddCardPopupOpen, setIsAddCardPopupOpen] = React.useState(false);
 //данные пользователя
-const [isUserData, setUserData] = React.useState([{}]);
+const [UserData, setUserData] = React.useState({});
 //данные карточек
-const [isCardsData, setCardsData] = React.useState([{}]);
+const [CardsData, setCardsData] = React.useState([]);
 //попап с картинкой
 const [selectedCard, setSelectedCard] = React.useState({});
 
@@ -67,10 +67,10 @@ function handleCardClick(selectedCard) {
         onEditAvatar={handleEditAvatarClick}
         onEditProfile={handleEditProfileClick}
         onAddCard={handleAddCardClick}
-        userName={isUserData.name}
-        userDescription={isUserData.about}
-        userAvatar={isUserData.avatar}
-        cards={isCardsData}
+        userName={UserData.name}
+        userDescription={UserData.about}
+        userAvatar={UserData.avatar}
+        cards={CardsData}
         onCardClick={handleCardClick}
         />
       < Footer/>

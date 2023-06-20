@@ -1,10 +1,10 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function PopupEditProfile(
-{  isOpen,
-  onClose}
-) {
+function PopupEditProfile({
+  isOpen,
+  onClose
+}) {
 
   function handleFormSubmit() {
 

@@ -1,9 +1,9 @@
 import React from "react";
 
-function ImagePopup(
-  {onClose,
-  card}
-) {
+function ImagePopup({
+  onClose,
+  card
+}) {
 
   return (
     <div className={`popup popup_image ${card.name ? " popup_opened" : ''}`}>

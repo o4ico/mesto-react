@@ -1,10 +1,10 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function PopupEditAvatar(
-{  isOpen,
-  onClose}
-) {
+function PopupEditAvatar({
+  isOpen,
+  onClose
+}) {
 
   function handleFormSubmit() {
 

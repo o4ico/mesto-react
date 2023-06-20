@@ -1,10 +1,10 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function PopupWithWarning(
-  {isOpen,
-  onClose}
-) {
+function PopupWithWarning({
+  isOpen,
+  onClose
+}) {
 
   function handleFormSubmit() {
 

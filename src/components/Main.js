@@ -31,6 +31,7 @@ function Main({
         <Card
           card={item}
           onCardClick={onCardClick}
+          key={item._id}
         />
       ))}
     </section>

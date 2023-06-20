@@ -1,10 +1,10 @@
 import React from "react";
 import PopupWithForm from "./PopupWithForm";
 
-function PopupAddCard(
-{  isOpen,
-  onClose}
-) {
+function PopupAddCard({
+  isOpen,
+  onClose
+}) {
 
   function handleFormSubmit() {
 
