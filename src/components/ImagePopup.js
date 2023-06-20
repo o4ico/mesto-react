@@ -1,6 +1,6 @@
 import React from "react";
 
-function PopupWithImage(
+function ImagePopup(
   {onClose,
   card}
 ) {
@@ -20,4 +20,4 @@ function PopupWithImage(
   );
 }
 
-export default PopupWithImage;
+export default ImagePopup;

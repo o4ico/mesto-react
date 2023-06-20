@@ -3,7 +3,7 @@ import React from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import Main from "./Main";
-import PopupWithImage from './PopupWithImage';
+import ImagePopup from './ImagePopup';
 import api from '../utils/Api';
 import PopupEditProfile from "./PopupEditProfile";
 import PopupAddCard from "./PopupAddCard";
@@ -37,7 +37,7 @@ React.useEffect(() => {
 }, []);
 
 //закрытие-открытие попапов
-function popupsOnClose() {
+function closeAllPopups() {
   setIsEditAvatarPopupOpen(false);
   setIsEditProfilePopupOpen(false);
   setIsAddCardPopupOpen(false);
@@ -76,18 +76,18 @@ function handleCardClick(selectedCard) {
       < Footer/>
       < PopupEditProfile
         isOpen={isEditProfilePopupOpen}
-        onClose={popupsOnClose}
+        onClose={closeAllPopups}
       />
       < PopupAddCard
         isOpen={isAddCardPopupOpen}
-        onClose={popupsOnClose}
+        onClose={closeAllPopups}
       />
       < PopupEditAvatar
         isOpen={isEditAvatarPopupOpen}
-        onClose={popupsOnClose}
+        onClose={closeAllPopups}
       />
-      <PopupWithImage
-        onClose={popupsOnClose}
+      <ImagePopup
+        onClose={closeAllPopups}
         card={selectedCard}
       />
         
