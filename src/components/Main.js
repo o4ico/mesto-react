@@ -9,6 +9,7 @@ function Main({
   userDescription,
   userAvatar, 
   cards,
+  onCardClick
 }) {
   return (
     <main className="main">
@@ -29,6 +30,7 @@ function Main({
       {cards.map((item) => (
         <Card
           card={item}
+          onCardClick={onCardClick}
         />
       ))}
     </section>

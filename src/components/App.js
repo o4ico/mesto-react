@@ -3,14 +3,11 @@ import React from "react";
 import Footer from "./Footer";
 import Header from "./Header";
 import Main from "./Main";
-import Card from './Card';
 import PopupWithImage from './PopupWithImage';
-import PopupWithWarning from './PopupWithWarning';
 import api from '../utils/Api';
 import PopupEditProfile from "./PopupEditProfile";
 import PopupAddCard from "./PopupAddCard";
 import PopupEditAvatar from "./PopupEditAvatar";
-import PopupWithForm from './PopupWithForm';
 
 function App() {
 
@@ -22,6 +19,8 @@ const [isAddCardPopupOpen, setIsAddCardPopupOpen] = React.useState(false);
 const [isUserData, setUserData] = React.useState([{}]);
 //данные карточек
 const [isCardsData, setCardsData] = React.useState([{}]);
+//попап с картинкой
+const [selectedCard, setSelectedCard] = React.useState({});
 
 React.useEffect(() => {
   api.getInfoServer()
@@ -42,6 +41,7 @@ function popupsOnClose() {
   setIsEditAvatarPopupOpen(false);
   setIsEditProfilePopupOpen(false);
   setIsAddCardPopupOpen(false);
+  setSelectedCard({});
 }
 
 function handleEditProfileClick() {
@@ -56,6 +56,10 @@ function handleAddCardClick() {
   setIsAddCardPopupOpen(true);
 }
 
+function handleCardClick(selectedCard) {
+  setSelectedCard(selectedCard);
+}
+
   return (
     <>
       < Header/>
@@ -67,6 +71,7 @@ function handleAddCardClick() {
         userDescription={isUserData.about}
         userAvatar={isUserData.avatar}
         cards={isCardsData}
+        onCardClick={handleCardClick}
         />
       < Footer/>
       < PopupEditProfile
@@ -83,6 +88,7 @@ function handleAddCardClick() {
       />
       <PopupWithImage
         onClose={popupsOnClose}
+        card={selectedCard}
       />
         
     </>
