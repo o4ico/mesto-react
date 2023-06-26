@@ -8,6 +8,7 @@ import api from '../utils/Api';
 import PopupEditProfile from "./PopupEditProfile";
 import PopupAddCard from "./PopupAddCard";
 import PopupEditAvatar from "./PopupEditAvatar";
+import { CurrentUserContext } from "../contexts/CurrentUserContext";
 
 function App() {
 
@@ -16,16 +17,16 @@ const [isEditAvatarPopupOpen, setIsEditAvatarPopupOpen] = React.useState(false);
 const [isEditProfilePopupOpen, setIsEditProfilePopupOpen] = React.useState(false);
 const [isAddCardPopupOpen, setIsAddCardPopupOpen] = React.useState(false);
 //данные пользователя
-const [UserData, setUserData] = React.useState({});
+const [currentUser, setCurrentUser] = React.useState({});
 //данные карточек
-const [CardsData, setCardsData] = React.useState([]);
+const [cardsData, setCardsData] = React.useState([]);
 //попап с картинкой
 const [selectedCard, setSelectedCard] = React.useState({});
 
 React.useEffect(() => {
   api.getInfoServer()
   .then((res) => {
-    setUserData(res)
+    setCurrentUser(res)
   })
   .catch(console.error);
 
@@ -60,18 +61,36 @@ function handleCardClick(selectedCard) {
   setSelectedCard(selectedCard);
 }
 
+function handleCardLike(card) {
+  // Снова проверяем, есть ли уже лайк на этой карточке
+  const isLiked = card.likes.some(like => like._id === currentUser._id);
+  
+  // Отправляем запрос в API и получаем обновлённые данные карточки
+  api.toggleLike(card._id, isLiked).then((newCard) => {
+    setCardsData((res) => res.map((c) => c._id === card._id ? newCard : c));
+  })
+  .catch(console.error);
+}
+
+function handleCardDelete(card) {
+
+  api.deleteCardServer(card._id).then(() => {
+    setCardsData((state) => state.filter((item) => item._id !== card._id)); //отфильтровываем, убирая выбранную карточку из массива
+  })
+  .catch(console.error);
+}
+
   return (
-    <>
+    <CurrentUserContext.Provider value={currentUser}>
       < Header/>
       < Main
         onEditAvatar={handleEditAvatarClick}
         onEditProfile={handleEditProfileClick}
         onAddCard={handleAddCardClick}
-        userName={UserData.name}
-        userDescription={UserData.about}
-        userAvatar={UserData.avatar}
-        cards={CardsData}
+        cards={cardsData}
         onCardClick={handleCardClick}
+        onCardLike={handleCardLike}
+        onCardDelete={handleCardDelete}
         />
       < Footer/>
       < PopupEditProfile
@@ -91,7 +110,7 @@ function handleCardClick(selectedCard) {
         card={selectedCard}
       />
         
-    </>
+    </CurrentUserContext.Provider>
   );
 }
 

@@ -106,7 +106,6 @@ class Api {
       }
     )
     .then((res) => {
-      console.log(res);
       return this._checkResponse(res);
     })
   }
