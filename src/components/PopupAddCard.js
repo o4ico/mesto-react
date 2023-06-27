@@ -29,6 +29,11 @@ function PopupAddCard({
     });
   } 
 
+  React.useEffect(() => {
+    setNameCard("");
+    setLink("");
+  }, [isOpen]);
+
   return (
     <PopupWithForm
     name="add-card"
@@ -43,7 +48,7 @@ function PopupAddCard({
         placeholder="Название"
         name="name"
         id="place-name"
-        required=""
+        required
         minLength={2}
         maxLength={30}
         onChange={handleChangeName}
@@ -55,7 +60,7 @@ function PopupAddCard({
         placeholder="Ссылка на картинку"
         name="link"
         id="picture-link"
-        required=""
+        required
         onChange={handleChangeLink}
       />
       <span className="popup__text-error picture-link-text-error" />

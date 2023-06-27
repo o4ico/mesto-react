@@ -51,7 +51,7 @@ function PopupEditProfile({
         placeholder="Имя"
         name="name"
         id="name"
-        required=""
+        required
         minLength={2}
         maxLength={40}
         value={name}
@@ -64,7 +64,7 @@ function PopupEditProfile({
         placeholder="О себе"
         name="about"
         id="about-me"
-        required=""
+        required
         minLength={2}
         maxLength={200}
         value={description}

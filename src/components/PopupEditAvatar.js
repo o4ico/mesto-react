@@ -31,7 +31,7 @@ function PopupEditAvatar({
         placeholder="Ссылка на картинку"
         name="avatar"
         id="avatar-link"
-        required=""
+        required
         ref={avatarRef}
       />
       <span className="popup__text-error avatar-link-text-error" />
