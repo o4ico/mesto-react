@@ -3,12 +3,31 @@ import PopupWithForm from "./PopupWithForm";
 
 function PopupAddCard({
   isOpen,
-  onClose
+  onClose,
+  onAddCard
 }) {
 
-  function handleFormSubmit() {
+  const [nameCard, setNameCard] = React.useState('');
+  const [link, setLink] = React.useState('');
 
+  function handleChangeName(e) {
+    setNameCard(e.target.value);
   }
+
+  function handleChangeLink(e) {
+    setLink(e.target.value);
+  }
+
+  function handleSubmit(e) {
+    // Запрещаем браузеру переходить по адресу формы
+    e.preventDefault();
+  
+    // Передаём значения управляемых компонентов во внешний обработчик
+    onAddCard({
+      name: nameCard,
+      link: link,
+    });
+  } 
 
   return (
     <PopupWithForm
@@ -17,7 +36,7 @@ function PopupAddCard({
     buttonText="Создать"
     isOpen={isOpen}
     onClose={onClose}
-    onSubmit={handleFormSubmit}>
+    onSubmit={handleSubmit}>
       <input
         className="popup__input popup__input_form_place-name"
         type="text"
@@ -27,6 +46,7 @@ function PopupAddCard({
         required=""
         minLength={2}
         maxLength={30}
+        onChange={handleChangeName}
       />
       <span className="popup__text-error place-name-text-error" />
       <input
@@ -36,6 +56,7 @@ function PopupAddCard({
         name="link"
         id="picture-link"
         required=""
+        onChange={handleChangeLink}
       />
       <span className="popup__text-error picture-link-text-error" />
     </PopupWithForm>

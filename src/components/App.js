@@ -26,7 +26,8 @@ const [selectedCard, setSelectedCard] = React.useState({});
 React.useEffect(() => {
   api.getInfoServer()
   .then((res) => {
-    setCurrentUser(res)
+    setCurrentUser(res);
+    console.log(res)
   })
   .catch(console.error);
 
@@ -80,6 +81,33 @@ function handleCardDelete(card) {
   .catch(console.error);
 }
 
+function handleUpdateUser(userData) {
+  api.patchInfoServer(userData)
+  .then((res) => {
+    setCurrentUser(res)
+    closeAllPopups();
+  })
+  .catch(console.error);
+}
+
+function handleUpdateAvatar(avatarData) {
+  api.patchAvatarServer(avatarData)
+  .then((res) => {
+    setCurrentUser(res)
+    closeAllPopups();
+  })
+  .catch(console.error);
+}
+
+function handleUpdateCard(cardData) {
+  api.postCardServer(cardData)
+  .then((res) => {
+    setCardsData([res, ...cardsData])
+    closeAllPopups();
+  })
+  .catch(console.error);
+}
+
   return (
     <CurrentUserContext.Provider value={currentUser}>
       < Header/>
@@ -96,14 +124,17 @@ function handleCardDelete(card) {
       < PopupEditProfile
         isOpen={isEditProfilePopupOpen}
         onClose={closeAllPopups}
+        onUpdateUser={handleUpdateUser}
       />
       < PopupAddCard
         isOpen={isAddCardPopupOpen}
         onClose={closeAllPopups}
+        onAddCard={handleUpdateCard}
       />
       < PopupEditAvatar
         isOpen={isEditAvatarPopupOpen}
         onClose={closeAllPopups}
+        onUpdateAvatar={handleUpdateAvatar}
       />
       <ImagePopup
         onClose={closeAllPopups}

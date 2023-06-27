@@ -32,7 +32,7 @@ function Card({
         <h2 className="card__text">{card.name}</h2>
         <div className="card__like-container">
           <button className={`card__like-button ${isLiked ? " card__like-button_active" : ''}`} type="button" onClick={handleCardLike}/>
-          <h3 className="card__likes" />
+          <h3 className="card__likes">{card.likes.length}</h3>
         </div>
       </div>
     </article>

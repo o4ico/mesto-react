@@ -9,7 +9,7 @@ function Main({
   cards,
   onCardClick,
   onCardLike,
-  onCardDelete,
+  onCardDelete
 }) {
 
   const currentUser = React.useContext(CurrentUserContext);
@@ -19,7 +19,7 @@ function Main({
     <section className="profile">
       <div className="profile__container">
         <div className="profile__avatar-button" onClick={onEditAvatar}>
-          <img className="profile__avatar" src={currentUser.avatar} alt="аватар" />
+          <img className="profile__avatar" src={currentUser.avatar} alt="аватар"/>
         </div>
         <div className="profile__info">
           <h1 className="profile__title">{currentUser.name}</h1>
