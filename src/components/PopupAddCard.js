@@ -10,6 +10,8 @@ function PopupAddCard({
   const [nameCard, setNameCard] = React.useState('');
   const [link, setLink] = React.useState('');
 
+
+
   function handleChangeName(e) {
     setNameCard(e.target.value);
   }
@@ -27,12 +29,13 @@ function PopupAddCard({
       name: nameCard,
       link: link,
     });
-  } 
+  }
 
   React.useEffect(() => {
-    setNameCard("");
-    setLink("");
+    setNameCard('');
+    setLink('');
   }, [isOpen]);
+
 
   return (
     <PopupWithForm
@@ -52,6 +55,7 @@ function PopupAddCard({
         minLength={2}
         maxLength={30}
         onChange={handleChangeName}
+        value={nameCard}
       />
       <span className="popup__text-error place-name-text-error" />
       <input
@@ -62,6 +66,7 @@ function PopupAddCard({
         id="picture-link"
         required
         onChange={handleChangeLink}
+        value={link}
       />
       <span className="popup__text-error picture-link-text-error" />
     </PopupWithForm>
